@@ -1,4 +1,7 @@
 import PostMessage from '../models/postMessage.js';
+//import mongoose from 'mongoose';
+
+//const PostMessage = mongoose.model('PostMessage');
 
 export const getPosts = async (req, res) => {
   try {
@@ -11,8 +14,8 @@ export const getPosts = async (req, res) => {
 
 export const createPost = async (req, res) => {
   try {
-    const post = req.body;
-    await PostMessage.save();
+    const post = PostMessage(req.body);
+    await post.save();
 
     res.status(201).json(post);
   } catch (err) {
